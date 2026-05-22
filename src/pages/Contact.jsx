@@ -17,7 +17,7 @@ function Contact() {
     e.preventDefault()
     setLoading(true)
     try {
-      await fetch('http://localhost:5000/api/contact', {
+      await fetch('https://portfolio-backend-6d2p.onrender.com/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

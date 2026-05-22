@@ -7,7 +7,7 @@ function Projects() {
 
   useEffect(() => {
   // First try our own backend
-  fetch('http://localhost:5000/api/projects')
+  fetch('https://portfolio-backend-6d2p.onrender.com/api/projects')
     .then(res => res.json())
     .then(data => {
       if (data.length > 0) {
