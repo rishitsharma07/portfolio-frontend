@@ -84,7 +84,7 @@ function Home() {
     fontSize: '0.85rem',
   }
 
-  const stack = ['Java', 'Spring Boot', 'React', 'Node.js', 'MongoDB', 'Kafka', 'MySQL', 'PostgreSQL']
+  const stack = ['Java', 'Spring Boot', 'Kafka', 'MySQL', 'React', 'Node.js', 'MongoDB']
 
   return (
     <div style={containerStyle}>
@@ -93,7 +93,7 @@ function Home() {
         Rishit <span style={goldStyle}>Sharma</span>
       </h1>
       <p style={taglineStyle}>
-        Full Stack Developer · Building with Java, React & Node
+        Java Backend Developer · Building with Spring Boot, React & Node
       </p>
       <div style={btnRowStyle}>
         <a href="/projects">
