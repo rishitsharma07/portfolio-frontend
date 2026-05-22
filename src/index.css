@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gold: #f5c518;
+  --gold-dark: #d4a017;
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --bg-nav: #0d0d0d;
+  --text: #e8e8e8;
+  --text-muted: #888;
+  --border: #222;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--gold-dark);
+}
