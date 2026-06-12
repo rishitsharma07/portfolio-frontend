@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Outfit:wght@400;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,28 +7,86 @@
 }
 
 :root {
+  /* Color Palette */
   --gold: #f5c518;
   --gold-dark: #d4a017;
-  --bg: #0a0a0a;
-  --bg-card: #111111;
-  --bg-nav: #0d0d0d;
-  --text: #e8e8e8;
-  --text-muted: #888;
-  --border: #222;
+  --gold-glow: rgba(245, 197, 24, 0.4);
+  
+  --bg: #050505;
+  --bg-card: rgba(17, 17, 17, 0.6);
+  --bg-nav: rgba(13, 13, 13, 0.7);
+  
+  --text: #ffffff;
+  --text-muted: #a1a1aa;
+  
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.2);
+  
+  /* Fonts */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(245, 197, 24, 0.03), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(245, 197, 24, 0.03), transparent 25%);
 }
 
 a {
   color: var(--gold);
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 a:hover {
   color: var(--gold-dark);
 }
+
+/* Typography Utilities */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+
+/* Utilities */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

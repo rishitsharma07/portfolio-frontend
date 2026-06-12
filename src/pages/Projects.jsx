@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import ProjectCard from '../components/ProjectCard'
+import './Projects.css'
 
 // Hardcoded projects as fallback while backend is waking up
 const fallbackProjects = [
@@ -26,28 +27,20 @@ function Projects() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Fetch from backend in the background
-    fetch('https://portfolio-backend-6d2p.onrender.com/api/projects')
+    // Fetch directly from GitHub API
+    fetch('https://api.github.com/users/rishitsharma07/repos?sort=updated&per_page=10')
       .then(res => res.json())
-      .then(data => {
-        if (data && data.length > 0) {
-          setProjects(data)
-        } else {
-          // Fallback to GitHub API
-          return fetch('https://api.github.com/users/rishitsharma07/repos?sort=updated&per_page=10')
-        }
-      })
-      .then(res => res && res.json())
       .then(data => {
         if (data && Array.isArray(data)) {
           const formatted = data.map(repo => ({
-            _id: repo.id,
+            _id: repo.id.toString(),
             title: repo.name,
             description: repo.description || 'No description provided.',
             techStack: [repo.language].filter(Boolean),
             githubUrl: repo.html_url,
             liveUrl: repo.homepage || '',
           }))
+          // Optional: filter out forks if needed by checking repo.fork
           setProjects(formatted)
         }
       })
@@ -56,52 +49,17 @@ function Projects() {
       })
   }, [])
 
-  const containerStyle = {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    padding: '4rem 2rem',
-  }
-
-  const headingStyle = {
-    fontSize: '2rem',
-    fontWeight: '700',
-    marginBottom: '0.5rem',
-  }
-
-  const goldStyle = {
-    color: 'var(--gold)',
-  }
-
-  const subheadingStyle = {
-    color: 'var(--text-muted)',
-    marginBottom: '3rem',
-    fontSize: '1rem',
-  }
-
-  const gridStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-    gap: '1.5rem',
-  }
-
-  const loadingStyle = {
-    color: 'var(--text-muted)',
-    textAlign: 'center',
-    marginTop: '4rem',
-    fontSize: '1rem',
-  }
-
   return (
-    <div style={containerStyle}>
-      <h2 style={headingStyle}>
-        My <span style={goldStyle}>Projects</span>
+    <div className="projects-container animate-fade-in-up">
+      <h2 className="projects-heading">
+        My <span className="text-gradient">Projects</span>
       </h2>
-      <p style={subheadingStyle}>Things I've built — from backend systems to full stack apps</p>
+      <p className="projects-subheading">Things I've built — from backend systems to full stack apps</p>
 
       {loading ? (
-        <p style={loadingStyle}>Loading projects...</p>
+        <p className="loading-text">Loading projects...</p>
       ) : (
-        <div style={gridStyle}>
+        <div className="projects-grid delay-100 animate-fade-in-up">
           {projects.map(project => (
             <ProjectCard key={project._id} project={project} />
           ))}
@@ -111,4 +69,4 @@ function Projects() {
   )
 }
 
-export default Projects
+export default Projects
